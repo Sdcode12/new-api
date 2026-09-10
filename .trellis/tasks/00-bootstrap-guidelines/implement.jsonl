@@ -1,0 +1,10 @@
+{"file": "AGENTS.md", "reason": "Authoritative rule set the spec extracts from"}
+{"file": ".trellis/spec/backend/index.md", "reason": "Spec navigation and usage contract"}
+{"file": ".trellis/spec/backend/directory-structure.md", "reason": "Layer ownership and placement rules"}
+{"file": ".trellis/spec/backend/database-guidelines.md", "reason": "GORM, dialects, migrations"}
+{"file": ".trellis/spec/backend/error-handling.md", "reason": "Quota-clamp errors and billing bounds"}
+{"file": ".trellis/spec/backend/logging-guidelines.md", "reason": "Logger selection and secret redaction"}
+{"file": ".trellis/spec/backend/quality-guidelines.md", "reason": "Go conventions, forbidden patterns, tests"}
+{"file": ".trellis/spec/backend/custom-development.md", "reason": "Fork boundary and upstream preservation"}
+{"file": ".trellis/spec/backend/security-guidelines.md", "reason": "OWASP auth mandate and control gaps"}
+{"file": ".trellis/spec/backend/i18n-guidelines.md", "reason": "Backend and frontend i18n conventions"}

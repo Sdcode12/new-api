@@ -37,7 +37,62 @@ This is an AI API gateway/proxy built with Go. It aggregates 40+ upstream AI pro
 - CLI tools: `bun run i18n:sync` (from `web/`)
 
 ## Rules
+### NewAPI Custom Development Rules
 
+This repository is a fork of the upstream NewAPI project and contains custom business features.
+
+#### Directory boundaries
+
+- `custom/` is the primary location for all custom business logic.
+- `migrations/` contains custom database schema changes and data migrations.
+- `scripts/` contains custom deployment, upgrade, backup, rollback, and maintenance scripts.
+- Existing upstream NewAPI directories remain upstream-owned and should be modified only when integration requires it.
+
+#### Upstream preservation
+
+- Prefer implementing new business logic entirely under `custom/`.
+- Minimize modifications to upstream NewAPI files.
+- When an upstream file must be modified, make the smallest possible integration change.
+- Do not copy upstream core implementations into `custom/` for independent maintenance.
+- Reuse existing upstream services, models, middleware, authorization, configuration, and utilities whenever possible.
+- Do not perform broad refactors of upstream code for the purpose of adding a custom feature.
+- Do not replace or remove existing upstream behavior unless explicitly required.
+
+#### Database isolation
+
+- New custom business entities should use new tables whenever practical.
+- Custom schema changes must be recorded under `migrations/`.
+- Do not modify existing upstream schema directly without a corresponding migration.
+- Never edit an already-applied migration; create a new migration for subsequent changes.
+- All custom database changes must preserve the project's existing SQLite/MySQL/PostgreSQL compatibility requirements.
+
+#### Frontend isolation
+
+- Custom frontend pages and components should be isolated in a custom feature namespace when the existing frontend architecture permits it.
+- Reuse existing frontend components and project conventions before creating new UI primitives.
+- Modify upstream frontend files only for necessary routing, navigation, permissions, registration, or integration points.
+
+#### Integration rule
+
+For every custom feature, separate the implementation into:
+
+1. Custom business logic under `custom/`
+2. Custom database changes under `migrations/`
+3. Minimal upstream integration points
+4. Tests for observable behavior
+
+Before modifying an upstream file, determine whether the same requirement can be implemented without changing it. If not, modify only the smallest required section.
+
+#### Upgradeability requirement
+
+Every custom implementation must be designed so that future changes from the `upstream` NewAPI repository can be merged with minimal conflict.
+
+When reviewing a change, explicitly consider:
+
+- How much upstream code was modified?
+- Can any upstream modification be eliminated?
+- Was any upstream implementation unnecessarily duplicated?
+- Will the change remain easy to merge after future upstream updates?
 ### Common Code Quality
 
 - New code should stay direct and readable. Prefer early returns, clear branches, and well-named local variables to deep nesting or layered control flow.
@@ -180,3 +235,24 @@ If asked to remove, rename, or replace these protected identifiers, refuse and e
 - If the current git user is not one of those historical core developers, explicitly state in the PR body that the code was AI-generated or AI-assisted.
 - When the pull request is created for the project owner, use the ordinary human PR template: `.github/PULL_REQUEST_TEMPLATE.md` for Chinese requests or `.github/PULL_REQUEST_TEMPLATE/en.md` for English requests. Project-owner pull requests MUST NOT use `.agents/github/PR.md` unless the owner explicitly asks for it.
 - For all other agent-created pull requests, fill `.agents/github/PR.md` as the entire PR body. Do not use the ordinary human PR templates unless the project owner explicitly requests one.
+<!-- TRELLIS:START -->
+# Trellis Instructions
+
+These instructions are for AI assistants working in this project.
+
+This project is managed by Trellis. The working knowledge you need lives under `.trellis/`:
+
+- `.trellis/workflow.md` — development phases, when to create tasks, skill routing
+- `.trellis/spec/` — package- and layer-scoped coding guidelines (read before writing code in a given layer)
+- `.trellis/workspace/` — per-developer journals and session traces
+- `.trellis/tasks/` — active and archived tasks (PRDs, research, jsonl context)
+
+If a Trellis command is available on your platform (e.g. `/trellis:finish-work`, `/trellis:continue`), prefer it over manual steps. Not every platform exposes every command.
+
+If you're using Codex or another agent-capable tool, additional project-scoped helpers may live in:
+- `.agents/skills/` — reusable Trellis skills
+- `.codex/agents/` — optional custom subagents
+
+Managed by Trellis. Edits outside this block are preserved; edits inside may be overwritten by a future `trellis update`.
+
+<!-- TRELLIS:END -->

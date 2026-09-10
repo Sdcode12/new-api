@@ -1,0 +1,12 @@
+{"file": "AGENTS.md", "reason": "Ground truth to verify spec claims against"}
+{"file": ".trellis/spec/backend/index.md", "reason": "Check index matches final file set"}
+{"file": ".trellis/spec/backend/directory-structure.md", "reason": "Verify layer claims against real paths"}
+{"file": ".trellis/spec/backend/database-guidelines.md", "reason": "Verify dialect/migration claims"}
+{"file": ".trellis/spec/backend/error-handling.md", "reason": "Verify quota helper surface and error types"}
+{"file": ".trellis/spec/backend/logging-guidelines.md", "reason": "Verify logger signatures"}
+{"file": ".trellis/spec/backend/quality-guidelines.md", "reason": "Verify conventions and test rules"}
+{"file": ".trellis/spec/backend/custom-development.md", "reason": "Verify fork boundary statements"}
+{"file": ".trellis/spec/backend/security-guidelines.md", "reason": "Verify auth path and gap claims"}
+{"file": ".trellis/spec/backend/i18n-guidelines.md", "reason": "Verify locale sets and API names"}
+{"file": ".trellis/spec/guides/cross-layer-thinking-guide.md", "reason": "Cross-layer consistency review"}
+{"file": ".trellis/spec/guides/code-reuse-thinking-guide.md", "reason": "Duplicate and reuse review"}
